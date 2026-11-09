@@ -9,17 +9,37 @@
 
 # TODO 1: Identify the information the movement process needs.
 # Consider the player's current room and movement command.
+# - current_room: stores the name of the room the player is currently in (starts at "The Dungeon")
+# - valid_exits: dictionary mapping each room to its allowed diretional paths (North, South, East, West)
 
 # TODO 2: Prompt for and receive the player's movement command.
+OUTPUT "You are currently in " + curren_room
+OUTPUT "Enter a movement command (go North, go south, go East, go West) or type 'exit' to quit:"
+INPUT player_command
 
 # TODO 3: Validate whether the requested movement is possible from the
-# current room. Show the decision clearly.
+IF player_command equals "ecit" THEN 
+  OUTPUT "Thanks for playing!"
+# End game loop
+ELSE IF player_command starts with "go" THEN 
+  Extract direction from player_command
+
 
 # TODO 4: Describe what happens when the movement command is valid.
-# Include the room update and player output.
+IF current_room equals "Guard Tower" THEN 
+  IF player inventory has all 6 keys THEN
+    OUTPUT "You use you 6 keys to unlock the gate and trap the Taskmaster! You win!
+ELSE
+  OUTPUT "The Taskmaster catches you in the guard tower without all 6 keys! Game Over."
+END IF
 
 # TODO 5: Describe what happens when the movement command is invalid.
-# Include the output the player should receive.
+ELSE
+  OUTPUT "You cannot go that way! A wall blocks your path."
+END IF
+ESE
+  OUTPUT "Invalid Command. Enter a vaid direction."
+END IF
 
 # TODO 6: Show how movement fits into repeated gameplay.
-# The final game continues accepting commands until a required ending occurs.
+# The final game continues accepting commands in a loop until or losing ending occurs.
