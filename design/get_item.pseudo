@@ -11,20 +11,45 @@ START get_item
 
     # TODO 1: Identify the information the get-item process needs.
     # Consider the current room, item in that room, and player's inventory.
+# - current_room: string representing where the player is (e.g., "Throne Room")
+# - room_items: dictionary mapping each room to its specfic key (e.g., Throne Room has "Ruby Key")
+# - inventory: Lst trasking keys collected by player (starts empty)
 
     # TODO 2: Prompt for and receive the player's get-item command.
+OUTPUT "You are in the " + current_room
+OUTPUT "Keys collecte: " + inventory
+IF curent_room has a key AND key is NOT in inventory THEN
+    OUTPUT " You see the " + room_item + "here."
+ELSE
+    OUTPUT "There are no keys left to find in this room." 
+END IF
+INPUT player_command
 
     # TODO 3: Validate whether the requested item is available in the current
-    # room. Show the decision clearly.
+    IF player_comand starts with "get" THEN
+        EXTRACT requested_item from player_command
+IF current_room has a key AND requested_item equals roo_item THEN
 
     # TODO 4: Describe what happens when the item request is valid.
-    # Include the inventory update and player output.
+    IF requested_item is NOT in inventory THN
+        ADD requested_item to inventory 
+        REMOVE key from current_room
+        OUTPUT requested_item + "has been added to your key collection!"
+ELSE
+    OUTPUT "You already have the " + requested_item + "."
+END IF
 
     # TODO 5: Describe what happens when the item request is invalid.
-    # Include the output the player should receive.
+    # Include the output the player should receive. 
+ELSE
+    OUTPUT "Invalid command. Enter 'get [key name]' or a move command."
+END IF
 
     # TODO 6: Show how the process returns to or continues the larger gameplay
     # loop after the command is handled.
+IF length of inventory equals 6 THEN
+    OUTPUT "You have found all 6 keys! Head to the Guard Tower to unlock the gates and escape." 
+END IT
 
 END get_item
 
